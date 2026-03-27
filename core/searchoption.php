@@ -11,6 +11,27 @@ class SearchOptions{
 
         return $searchOption . "</table></div>";
     }
+    static public function formSearchListDisplay() {
+        $searchValue = ''; $viewOnly = false;
+        $searchOption = "<div class='row'>";
+        $searchOption .= SelectGenerator::formSearchListDisplay(self::difficultyParam());
+        $searchOption .= SelectGenerator::formSearchListDisplay(self::bibleSectionParam());
+        $searchOption .= SelectGenerator::formSearchListDisplay(self::bibleBooksParam());
+        $searchOption .= SelectGenerator::formSearchListDisplay(self::typeOfKnowledgeParam());
+
+        $tmp  = $searchOption . "</div>";
+        $tmp = str_replace('XX_COL_XX','3', $tmp);
+        return $tmp;
+    }
+    static public function formSearchListValueSQLQuery() {
+        $searchOption = " (1 = 1 ";
+        $searchOption .= " AND " . SelectGenerator::formSearchValueSQLQuery(self::difficultyParam());
+        $searchOption .= " AND " . SelectGenerator::formSearchValueSQLQuery(self::bibleSectionParam());
+        $searchOption .= " AND " . SelectGenerator::formSearchValueSQLQuery(self::bibleBooksParam());
+        $searchOption .= " AND " . SelectGenerator::formSearchValueSQLQuery(self::typeOfKnowledgeParam());
+
+        return $searchOption . ") ";
+    }
 
     static public function listSearchDisplay($searchValue) {
         $searchOption = '';
@@ -235,7 +256,7 @@ class SearchOptions{
     
         static public function displayValueForList($param, $searchValue) {
             $difficulty = self::getValue($param, $searchValue);
-            return " [ ". $param['displayName'] ." : " . $param['data'][ $difficulty ] . " ] ";
+            return " [ ". $param['displayName'] ." : " . (isset($param['data'][ $difficulty ]) ? $param['data'][ $difficulty ] : $difficulty) . " ] ";
         }
     
         static public function formSearchDisplay($param, $searchValue, $viewOnly) {
@@ -247,6 +268,31 @@ class SearchOptions{
             }
             $tmp .= "</select></td></tr>";
             return $tmp;
+        }
+
+        static public function formSearchListDisplay($param) {
+            $varName = $param['tag'].'SearchOption';
+
+            $currentValue = isset($_POST[$varName]) ? $_POST[$varName] : "all";
+            $tmp = "<div class='col-md-XX_COL_XX'>". $param['displayName'] ." :<br/>
+                    <select name='".$param['tag']."SearchOption' >";
+            foreach ($param['data'] as $key => $value) {
+                $tmp .= "<option value='$key' ". ( strtoupper($key) == strtoupper($currentValue) ? " SELECTED=\"SELECTED\" " : "") .">$value</option>";
+            }
+            $tmp .= "</select></div>";
+            return $tmp;
+        }
+        static public function formSearchValueSQLQuery($param) {
+            $varName = $param['tag'].'SearchOption';
+            $value = isset($_POST[$varName]) ? $_POST[$varName] : "";
+            $value = $value == "all" ? "" : $value;
+
+            $searchQuery = " searchoptions LIKE '%%' ";
+            if($value != "") {
+                $searchQuery = " searchoptions LIKE '%<". $param['tag'] .">$value</". $param['tag'] .">%' ";
+            }
+
+            return $searchQuery;
         }
     }
 

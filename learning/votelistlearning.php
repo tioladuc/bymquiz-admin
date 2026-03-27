@@ -1,6 +1,7 @@
 <?php 
 $db = DBCore::getInstance();
 $userId = $_SESSION['user']['id'];
+$languageChoice = new CustomField("language", "SELECT code as _key_, name as _value_ FROM languages ORDER BY name", null);
 
 if($_POST && isset($_POST['votesubmit'])) {
 
@@ -75,6 +76,7 @@ $search   = $_POST['search'] ?? '';
 $status   = $_POST['status'] ?? '1';
 $date     = $_POST['date'] ?? '';
 $language = $_POST['language'] ?? '';
+$language = $_POST['language'] ?? '';
 
 $sql = "
 SELECT l.*, 
@@ -87,7 +89,7 @@ LEFT JOIN vote_learning uv
     ON l.id = uv.data_learning_id 
     AND uv.users_publisher_id = ?
 WHERE l.users_publisher_id != ?
-";
+AND " . SearchOptions::formSearchListValueSQLQuery();
 
 $params = [$userId, $userId];
 
@@ -133,12 +135,13 @@ if($_POST) {
 
 <div class="container">
 
+    <form method="POST" class="row g-2">
     <div class="card p-4 shadow mb-4">
         <h3>Vote Learning Items</h3>
 
         <!-- FILTER FORM -->
-        <form method="POST" class="row g-2">
-
+        
+        <div class="row">
             <div class="col-md-3">
                 <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" class="form-control"
                     placeholder="Search...">
@@ -157,16 +160,18 @@ if($_POST) {
             </div>
 
             <div class="col-md-2">
-                <input type="text" name="language" value="<?= htmlspecialchars($language) ?>" class="form-control"
-                    placeholder="Language">
+                <?= $languageChoice->displaySelect($_POST['language']??null, false, true); ?>
             </div>
 
             <div class="col-md-2">
                 <button class="btn btn-primary w-100">Filter</button>
             </div>
-
-        </form>
+        </div>
     </div>
+    <div class="card p-4 shadow mb-4 mySearchBox search-gray-box">
+        <?= SearchOptions::formSearchListDisplay() ?>
+    </div>
+    </form>
 
     <!-- LIST -->
     <?php if(empty($learnings)): ?>

@@ -22,12 +22,15 @@
         }
     }
 
-    public function displaySelect($currentValue, $isReadOnly = false) {
-        $tmp = "<SELECT name='". $this->fieldName ."' ". ($isReadOnly ? " DISABLED " : "") ." >";
+    public function displaySelect($currentValue, $isReadOnly = false, $addAllOption=false) {
+        if($addAllOption) $this->data[''] = "All/Tout";
+        $currentValue = $currentValue==null ? "" : $currentValue;
+
+        $tmp = "<SELECT class='form-control' name='". $this->fieldName ."' ". ($isReadOnly ? " DISABLED " : "") ." >";
         foreach ($this->data as $key => $value) {
             $tmp .= "<option value='$key' ". 
                 (strtoupper($currentValue) == strtoupper($key) ? " SELECTED=SELECTED " : "" ) .
-                " >$value</option>";
+                " >". ($addAllOption ? "Langue:" : "") ." $value </option>";
         }
         $tmp .= "</SELECT>";
         return $tmp;

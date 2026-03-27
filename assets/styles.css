@@ -5,7 +5,7 @@
     background: linear-gradient(180deg, #eeeeee 0%, #dcdcdc 50%, #c8c8c8 100%);
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     color: #333;
-    width: fit-content;
+    width: 100%;
   }
   .search-gray-box td {
       font-weight: bold;

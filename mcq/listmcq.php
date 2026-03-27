@@ -5,6 +5,7 @@ $db = DBCore::getInstance();
 
 $userId = $_SESSION['user']['id'];
 $message = "";
+$languageChoice = new CustomField("language", "SELECT code as _key_, name as _value_ FROM languages ORDER BY name", null);
 
 if($_POST) {
     if(isset($_POST['delete'])) {
@@ -20,8 +21,9 @@ if($_POST) {
 $search = $_POST['search'] ?? '';
 $status = $_POST['status'] ?? '';
 $date = $_POST['date'] ?? '';
+$language = $_POST['language'] ?? '';
 
-$sql = "SELECT * FROM data_mcq WHERE users_publisher_id = ?";
+$sql = "SELECT * FROM data_mcq WHERE users_publisher_id = ? AND " . SearchOptions::formSearchListValueSQLQuery();
 $params = [$userId];
 
 // SEARCH
@@ -41,6 +43,12 @@ if ($status !== '') {
 if (!empty($date)) {
     $sql .= " AND DATE(created_on) = ?";
     $params[] = $date;
+}
+
+// LANGUAGE
+if (!empty($language)) {
+    $sql .= " AND language = ?";
+    $params[] = $language;
 }
 
 $sql .= " ORDER BY created_on DESC";
@@ -63,18 +71,18 @@ if($_POST) {
             <font style="color:red;"><?= $message ?></font>
         </center>
     </div>
+    <form method="POST" class="row g-2">
     <div class="card p-4 shadow mb-4">
         <h3>My MCQs</h3>
 
-        <!-- FILTER FORM -->
-        <form method="POST" class="row g-2">
-
+        <!-- FILTER FORM -->        
+        <div class="row">
             <div class="col-md-4">
                 <input type="text" name="search" value="<?= htmlspecialchars($search) ?>" class="form-control"
                     placeholder="Search title or question">
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <select name="status" class="form-control">
                     <option value="">All Status</option>
                     <option value="1" <?= $status==='1'?'selected':'' ?>>Active</option>
@@ -82,16 +90,23 @@ if($_POST) {
                 </select>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <input type="date" name="date" value="<?= htmlspecialchars($date) ?>" class="form-control">
+            </div>
+
+            <div class="col-md-2">
+                <?= $languageChoice->displaySelect($_POST['language']??null, false, true); ?>
             </div>
 
             <div class="col-md-2">
                 <button class="btn btn-primary w-100">Filter</button>
             </div>
-
-        </form>
+        </div>
     </div>
+    <div class="card p-4 shadow mb-4 mySearchBox search-gray-box">
+        <?= SearchOptions::formSearchListDisplay() ?>
+    </div>
+    </form>
 
     <!-- LIST -->
     <?php if(empty($mcqs)): ?>
