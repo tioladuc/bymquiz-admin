@@ -1,0 +1,12 @@
+.search-gray-box {
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid #cfcfcf;
+    background: linear-gradient(180deg, #eeeeee 0%, #dcdcdc 50%, #c8c8c8 100%);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    color: #333;
+    width: fit-content;
+  }
+  .search-gray-box td {
+      font-weight: bold;
+  }
