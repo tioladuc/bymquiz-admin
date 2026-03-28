@@ -128,6 +128,8 @@ if (!empty($language)) {
 }
 
 $sql .= " GROUP BY m.id ORDER BY m.created_on DESC";
+Paging::setParameters($sql, $params, $db);
+$sql .= Paging::getValuePagingSQL();
 
 $mcqs = $db->selectAll($sql, $params);
 $hiddenFields = "";
@@ -236,5 +238,6 @@ if($_POST) {
     </div>
 
     <?php endforeach; ?>
+    <?= Paging::displayPaging() ?>
 
 </div>

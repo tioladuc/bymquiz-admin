@@ -52,6 +52,8 @@ if (!empty($language)) {
 }
 
 $sql .= " ORDER BY created_on DESC";
+Paging::setParameters($sql, $params, $db);
+$sql .= Paging::getValuePagingSQL();
 
 $mcqs = $db->selectAll($sql, $params);
 
@@ -159,5 +161,6 @@ if($_POST) {
 
     </div>
     <?php endforeach; ?>
+    <?= Paging::displayPaging() ?>
 
 </div>

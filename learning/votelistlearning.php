@@ -119,6 +119,8 @@ if (!empty($language)) {
 }
 
 $sql .= " GROUP BY l.id ORDER BY l.created_on DESC";
+Paging::setParameters($sql, $params, $db);
+$sql .= Paging::getValuePagingSQL();
 
 $learnings = $db->selectAll($sql, $params);
 
@@ -229,5 +231,6 @@ if($_POST) {
     </div>
 
     <?php endforeach; ?>
+    <?= Paging::displayPaging() ?>
 
 </div>
