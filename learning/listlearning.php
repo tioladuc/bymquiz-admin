@@ -147,7 +147,8 @@ if($_POST) {
             Created: <?= $learning['created_on'] ?> |
             Status: <?= $learning['active'] ? 'Active' : 'Inactive' ?> | 
             Language: <?= $learning['language'] ?> |
-            In Production: <?= trim($learning['achived'])=="archived" ? 'Yes' : 'No' ?>
+            In Production: <?= trim($learning['achived'])=="archived" ? 'Yes' : 'No' ?> |
+            Keywords: <?= ($learning['keywords']==null || trim($learning['keywords'])=="") ? ' --/--' : trim($learning['keywords']) ?>
         </small>
 
         <div class="mt-2">

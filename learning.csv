@@ -1,5 +1,5 @@
-title;description;bible_references;language;active;bibleSection;difficulty
-ttt;ttt;ttt;en;1;all;all
-rrrr;rrrr;rrrr;fr;1;all;all
-hhh;hhh;hhh;fr;1;all;all
-kkk;kkk;kkk;en;1;all;all
+title;description;bible_references;language;active;bibleSection;difficulty,bibleBooks,typeOfKnowledge,keywords
+ttt;ttt;ttt;en;1;all;all;all;all;
+rrrr;rrrr;rrrr;fr;1;all;all;all;all;
+hhh;hhh;hhh;fr;1;all;all;all;all;
+kkk;kkk;kkk;en;1;all;all;all;all;

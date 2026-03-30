@@ -3,7 +3,7 @@
     require_once "core/searchoption.php";
     require_once "core/dbcustomfields.php";
     
-    $GLOBALS['ApiUrl'] = "http://api.institutblaina.cm/bymquiz";
+    $GLOBALS['ApiUrl'] = "https://yehoshoualevivant.com/bymquiz";//"http://api.institutblaina.cm/bymquiz";
     $GLOBALS['MaxPage'] = 1;
     $GLOBALS['msg'] = '';
     $_GET['mnu'] = isset($_GET['mnu']) ? $_GET['mnu'] : 'home';

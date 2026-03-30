@@ -128,7 +128,8 @@ if($_POST) {
             Created: <?= $mcq['created_on'] ?> |
             Status: <?= $mcq['active'] ? 'Active' : 'Inactive' ?> | 
             Language: <?= $mcq['language'] ?> |
-            In Production: <?= trim($mcq['achived'])=="archived" ? 'Yes' : 'No' ?>
+            In Production: <?= trim($mcq['achived'])=="archived" ? 'Yes' : 'No' ?> |
+            Keywords: <?= ($mcq['keywords']==null || trim($mcq['keywords'])=="") ? ' --/--' : trim($mcq['keywords']) ?>
         </small>
 
         <div class="mt-2">

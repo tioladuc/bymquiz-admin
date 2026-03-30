@@ -195,7 +195,8 @@ if($_POST) {
             <?= $item['language'] ?> |
             <?= $item['active'] ? 'Active' : 'Inactive' ?> | 
             Language: <?= $item['language'] ?> |
-            In Production: <?= trim($item['achived'])=="archived" ? 'Yes' : 'No' ?>
+            In Production: <?= trim($item['achived'])=="archived" ? 'Yes' : 'No' ?> |
+            Keywords: <?= ($item['keywords']==null || trim($item['keywords'])=="") ? ' --/--' : trim($item['keywords']) ?>
         </small>
 
         <!-- VOTES -->

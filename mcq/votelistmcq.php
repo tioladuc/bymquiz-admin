@@ -202,7 +202,8 @@ if($_POST) {
             <?= $mcq['created_on'] ?> |
             <?= $mcq['active'] ? 'Active' : 'Inactive' ?> | 
             Language: <?= $mcq['language'] ?> |
-            In Production: <?= trim($mcq['achived'])=="archived" ? 'Yes' : 'No' ?>
+            In Production: <?= trim($mcq['achived'])=="archived" ? 'Yes' : 'No' ?> |
+            Keywords: <?= ($mcq['keywords']==null || trim($mcq['keywords'])=="") ? ' --/--' : trim($mcq['keywords']) ?>
         </small>
 
         <!-- VOTES -->

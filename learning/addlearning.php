@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title']);
     $description = trim($_POST['description']);
     $bible = trim($_POST['bible_references']);
+    $keywords = trim($_POST['keywords']);
     $language = trim($_POST['language']);
     $active = isset($_POST['active']) ? 1 : 0;
     
@@ -24,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "description" => $description,
             "bible_references" => $bible,
             "language" => $language,
+            "keywords" => $keywords,
             "searchoptions" => SearchOptions::valueSearchDisplay(),
             "users_publisher_id" => $_SESSION['user']['id'],
             "created_on" => date("Y-m-d H:i:s"),
@@ -73,6 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label>Language</label>
                 <?= $languageChoice->displaySelect(null, false); ?>
+            </div>
+            
+            <!-- KEYWORDS -->
+            <div class="mb-3">
+                <label>Keywords *</label>
+                <textarea name="keywords" class="form-control" rows="5" required></textarea>
             </div>
 
             <!-- ACTIVE -->

@@ -71,6 +71,10 @@ $userVote = $db->selectOne(
         <div class="form-check mb-3 searchoption">
             <?= SearchOptions::formSearchDisplay($mcq['searchoptions'], true) ?>
         </div>
+
+        <!-- KEYWORDS -->
+        <p class="mt-3"><strong>Keywords : </strong><?= nl2br(htmlspecialchars($mcq['keywords'])) ?></p>
+
         <!-- VOTES -->
         <div class="mb-3">
             ⭐ <strong>Total Score:</strong> <?= $mcq['total_votes'] ?> <br>

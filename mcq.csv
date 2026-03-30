@@ -1,4 +1,4 @@
-title; question; A; B; C; D; answer; explanation; bible; language; active;bibleSection;difficulty
-ttt;ttt;ttt;ttt;ttt;ttt;B;ttt;ttt;fr;1;all;all
-ddd;ddd;ddd;ddd;ddd;ddd;C;ddd;ddd;fr;1;all;all
-www;www;www;www;www;www;A;www;www;fr;1;all;all
+title; question; A; B; C; D; answer; explanation; bible; language; active;bibleSection;difficulty,bibleBooks,typeOfKnowledge,keywords
+ttt;ttt;ttt;ttt;ttt;ttt;B;ttt;ttt;fr;1;all;all;all;all;
+ddd;ddd;ddd;ddd;ddd;ddd;C;ddd;ddd;fr;1;all;all;all;all;
+www;www;www;www;www;www;A;www;www;fr;1;all;all;all;all;

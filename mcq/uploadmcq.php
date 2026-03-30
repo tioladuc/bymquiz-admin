@@ -53,7 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $language,
                         $active,
                         $bibleSection,
-                        $difficulty
+                        $difficulty,
+                        $bibleBooks,
+                        $typeOfKnowledge,
+                        $keywords
                     ) = $data;
 
                     $answer = strtoupper(trim($answer));
@@ -74,10 +77,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         "reponseChoice" => $answer,
                         "explication" => trim($explication),
                         "bible_references" => trim($bible),
+
+                        /*"bibleBooks" => trim($bibleBooks),
+                        "typeOfKnowledge" => trim($typeOfKnowledge),
+                        "keywords" => trim($keywords),*/
                         "language" => trim($language),
                         "active" => (int)$active,
                         "users_publisher_id" => $userId,
-                        "searchoptions" => "<bibleSection>$bibleSection</bibleSection><difficulty>$difficulty</difficulty>",
+                        "searchoptions" => "<bibleSection>$bibleSection</bibleSection><difficulty>$difficulty</difficulty><bibleBooks>$bibleBooks</bibleBooks><typeOfKnowledge>$typeOfKnowledge</typeOfKnowledge><keywords>$keywords</keywords>",
                         "created_on" => date('Y-m-d H:i:s')
                     ]);
 

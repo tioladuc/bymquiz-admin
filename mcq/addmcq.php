@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $answer = strtoupper(trim($_POST['answer']));
     $explication = trim($_POST['explication']);
     $bible = trim($_POST['bible_references']);
+    $keywords = trim($_POST['keywords']);
     $language = trim($_POST['language']);
 
     // =========================
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Correct answer must be A, B, C or D";
     }
     else {
-        print_r($_SESSION);
+        //print_r($_SESSION);
         $db->insert("data_mcq", [
             "title" => $title,
             "question" => $question,
@@ -39,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "reponseChoice" => $answer,
             "explication" => $explication,
             "bible_references" => $bible,
+            "keywords" => $keywords,
             "searchoptions" => SearchOptions::valueSearchDisplay(),
             "users_publisher_id" => $_SESSION['user']['id'],
             "language" => $language,
@@ -116,6 +118,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label>Bible References</label>
                 <input type="text" name="bible_references" class="form-control">
+            </div>
+
+            <!-- KEYWORDS -->
+            <div class="mb-3">
+                <label>Keywords *</label>
+                <textarea name="keywords" class="form-control" rows="5" required></textarea>
             </div>
 
             <!-- LANGUAGE -->

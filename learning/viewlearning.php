@@ -52,6 +52,9 @@ $userVote = $db->selectOne(
             <p><strong>📖 <?= htmlspecialchars($learning['bible_references']) ?></strong></p>
         <?php endif; ?>
 
+        <!-- KEYWORDS -->
+        <p class="mt-3"><strong>Keywords : </strong><?= nl2br(htmlspecialchars($learning['keywords'])) ?></p>
+
         <!-- ACTIVE -->
         <div class="form-check mb-3 searchoption">
             <?= SearchOptions::formSearchDisplay($learning['searchoptions'], true) ?>

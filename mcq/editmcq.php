@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $answer = strtoupper(trim($_POST['answer']));
     $explication = trim($_POST['explication']);
     $bible = trim($_POST['bible_references']);
+    $keywords = trim($_POST['keywords']);
     $language = trim($_POST['language']);
     $active = isset($_POST['active']) ? 1 : 0;
 
@@ -62,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "reponseChoice" => $answer,
                 "explication" => $explication,
                 "bible_references" => $bible,
+                "keywords" => $keywords,
                 "language" => $language,
                 "searchoptions" => SearchOptions::valueSearchDisplay(),
                 "active" => $active
@@ -166,6 +168,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="mb-3">
                 <label>Language </label>
                 <?= $languageChoice->displaySelect($mcq['language'], false); ?>
+            </div>
+
+            <!-- KEYWORDS -->
+            <div class="mb-3">
+                <label>Bible References</label>
+                <input type="text" name="keywords" class="form-control"
+                       value="<?= htmlspecialchars($mcq['keywords']) ?>">
             </div>
 
             <!-- ACTIVE -->
