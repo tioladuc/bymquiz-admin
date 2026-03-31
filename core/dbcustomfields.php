@@ -65,7 +65,7 @@
         $total = self::$db->selectOne($new_sql, self::$params)['total'];
         
         $remainder = $total % $GLOBALS['MaxPage'];
-        $pages = $total / $GLOBALS['MaxPage'];
+        $pages = ($total -$remainder)/ $GLOBALS['MaxPage'];
         $pages += $remainder == 0 ? 0 : 1;
 
         $hiddenFields = "";

@@ -4,7 +4,7 @@
     require_once "core/dbcustomfields.php";
     
     $GLOBALS['ApiUrl'] = "https://yehoshoualevivant.com/bymquiz";//"http://api.institutblaina.cm/bymquiz";
-    $GLOBALS['MaxPage'] = 1;
+    $GLOBALS['MaxPage'] = 10;
     $GLOBALS['msg'] = '';
     $_GET['mnu'] = isset($_GET['mnu']) ? $_GET['mnu'] : 'home';
     session_start();

@@ -25,16 +25,16 @@ if($_POST && isset($_POST['putonline'])) {
 
     $inserLectMCQ = "INSERT INTO data_mcq_validate (   title,    question,  choiceA,
         choiceB,   choiceC,   choiceD,    reponseChoice,   explication,   bible_references,
-        description,   language,   created_on,   active,  searchoptions,  users_publisher_id, data_mcq_id
+        description,   language,   created_on,   active,  searchoptions,  users_publisher_id, data_mcq_id, keywords
     )   SELECT  title,   question,   choiceA,   choiceB,  choiceC,  choiceD,
         reponseChoice,  explication,   bible_references,   description,  language,  created_on,
-        active,  searchoptions,  users_publisher_id, id AS data_mcq_id
+        active,  searchoptions,  users_publisher_id, id AS data_mcq_id, keywords
     FROM data_mcq WHERE data_mcq.id IN (".  ($_POST['mcq']==""? "0" : $_POST['mcq'] ) ." );";
 
     $inserLectLearning = "INSERT INTO data_learning_validate (  title,  description,  bible_references,
-    language,  created_on,  active,  searchoptions,  users_publisher_id,  data_learning_id)
+    language,  created_on,  active,  searchoptions,  users_publisher_id,  data_learning_id, keywords)
     SELECT   title,  description,  bible_references,  language,  created_on,  active,
-        searchoptions,   users_publisher_id,   id AS data_learning_id
+        searchoptions,   users_publisher_id,   id AS data_learning_id, keywords
     FROM data_learning WHERE data_learning.id IN (". ($_POST['learning']==""? "0" : $_POST['learning'] ) ." );";
 
     try {

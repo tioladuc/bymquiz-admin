@@ -47,9 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $active,
                         $bibleSection,
                         $difficulty,
-                        $difficulty,
                         $bibleBooks,
                         $typeOfKnowledge,
+                        $keywords
                     ) = $data;
 
                     // BASIC VALIDATION
@@ -62,11 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         "description" => trim($description),
                         "bible_references" => trim($bible),
                         /*"bibleBooks" => trim($bibleBooks),
-                        "typeOfKnowledge" => trim($typeOfKnowledge),
-                        "keywords" => trim($keywords),*/
+                        "typeOfKnowledge" => trim($typeOfKnowledge),*/
+                        "keywords" => trim($keywords),
                         "language" => trim($language),
                         "active" => (int)$active,
-                        "searchoptions" => "<bibleSection>$bibleSection</bibleSection><difficulty>$difficulty</difficulty><bibleBooks>$bibleBooks</bibleBooks><typeOfKnowledge>$typeOfKnowledge</typeOfKnowledge><keywords>$keywords</keywords>",
+                        "searchoptions" => "<bibleSection>$bibleSection</bibleSection><difficulty>$difficulty</difficulty><bibleBooks>$bibleBooks</bibleBooks><typeOfKnowledge>$typeOfKnowledge</typeOfKnowledge>",
                         "users_publisher_id" => $userId,
                         "created_on" => date('Y-m-d H:i:s')
                     ]);

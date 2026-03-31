@@ -79,12 +79,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         "bible_references" => trim($bible),
 
                         /*"bibleBooks" => trim($bibleBooks),
-                        "typeOfKnowledge" => trim($typeOfKnowledge),
-                        "keywords" => trim($keywords),*/
+                        "typeOfKnowledge" => trim($typeOfKnowledge),*/
+                        "keywords" => trim($keywords),
                         "language" => trim($language),
                         "active" => (int)$active,
                         "users_publisher_id" => $userId,
-                        "searchoptions" => "<bibleSection>$bibleSection</bibleSection><difficulty>$difficulty</difficulty><bibleBooks>$bibleBooks</bibleBooks><typeOfKnowledge>$typeOfKnowledge</typeOfKnowledge><keywords>$keywords</keywords>",
+                        "searchoptions" => "<bibleSection>$bibleSection</bibleSection><difficulty>$difficulty</difficulty><bibleBooks>$bibleBooks</bibleBooks><typeOfKnowledge>$typeOfKnowledge</typeOfKnowledge>",
                         "created_on" => date('Y-m-d H:i:s')
                     ]);
 
