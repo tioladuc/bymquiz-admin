@@ -69,6 +69,7 @@
             <!-- LOGGED USER -->
 
             <!-- MCQ Dropdown -->
+            <?php if(!isAdmin()): ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="mcqDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     MCQ
@@ -80,8 +81,10 @@
                     <li><a class="dropdown-item" href="index.php?mnu=mcq&op=vote">Vote MCQ</a></li>
                 </ul>
             </li>
+            <?php endif; ?>
 
             <!-- Learning Dropdown -->
+            <?php if(!isAdmin()): ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="learningDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Learning
@@ -93,6 +96,7 @@
                     <li><a class="dropdown-item" href="index.php?mnu=learning&op=vote">Vote Learning</a></li>
                 </ul>
             </li>
+            <?php endif; ?>
 
             <!-- ADMIN ONLY -->
             <?php if(isAdmin()): ?>

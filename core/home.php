@@ -4,10 +4,10 @@
     <p class="lead">Learn, Create, and Share Bible Knowledge</p>
 
     <?php if(!isLogged()): ?>
-        <a href="login.php" class="btn btn-light btn-lg me-2">Login</a>
-        <a href="createaccount.php" class="btn btn-warning btn-lg">Create Account</a>
+        <a href="index.php?mnu=login" class="btn btn-light btn-lg me-2">Login</a>
+        <a href="index.php?mnu=createaccount" class="btn btn-warning btn-lg">Create Account</a>
     <?php else: ?>
-        <a href="dashboard.php" class="btn btn-light btn-lg">Go to Dashboard</a>
+        <a href="#" class="btn btn-light btn-lg">Go to Dashboard</a>
     <?php endif; ?>
 </div>
 
@@ -112,9 +112,9 @@ $totalLearning = $db->selectOne("SELECT COUNT(*) as total FROM data_learning")['
 <div class="text-center mt-5 mb-5">
     <?php if(!isLogged()): ?>
         <h3>Start your journey today!</h3>
-        <a href="createaccount.php" class="btn btn-success btn-lg mt-3">Join Now</a>
+        <a href="index.php?mnu=createaccount" class="btn btn-success btn-lg mt-3">Join Now</a>
     <?php else: ?>
         <h3>Continue learning and sharing!</h3>
-        <a href="dashboard.php" class="btn btn-primary btn-lg mt-3">Go to Dashboard</a>
+        <a href="#" class="btn btn-primary btn-lg mt-3">Go to Dashboard</a>
     <?php endif; ?>
 </div>
