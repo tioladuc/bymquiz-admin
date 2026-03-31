@@ -10,3 +10,11 @@
   .search-gray-box td {
       font-weight: bold;
   }
+
+  body {
+    background-image: url("http://api.institutblaina.cm/bymquiz-admin/assets/background.png"); /* Specify the image path */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-attachment: fixed; /* Keeps the image fixed while scrolling */
+    background-color: #cccccc; /* Fallback color if the image doesn't load */
+}

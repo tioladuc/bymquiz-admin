@@ -1,5 +1,5 @@
 <!-- HERO SECTION -->
-<div class="text-center p-5 bg-primary text-white rounded shadow">
+<div class="text-center p-5 bg-primary text-white rounded shadow" style="background-color:#884e2e !important;">
     <h1 class="display-4">Welcome to BYM Quiz</h1>
     <p class="lead">Learn, Create, and Share Bible Knowledge</p>
 
