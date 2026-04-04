@@ -32,6 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 while (($data = fgetcsv($handle, 1000, ";")) !== false) {
 
+                    $data = array_map(function ($value) {
+                        return mb_convert_encoding($value, 'UTF-8', 'auto');
+                    }, $data);
                     $row++;
 
                     // SKIP HEADER

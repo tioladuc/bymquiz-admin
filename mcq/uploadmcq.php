@@ -32,7 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $inserted = 0;
 
                 while (($data = fgetcsv($handle, 1000, ";")) !== false) {
-
+                    
+                    $data = array_map(function ($value) {
+                        return mb_convert_encoding($value, 'UTF-8', 'auto');
+                    }, $data);
                     $row++;
 
                     // SKIP HEADER
@@ -60,8 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ) = $data;
 
                     $answer = strtoupper(trim($answer));
+                    //echo "****** $answer ******<br>"; print_r($data);
+                    /*echo "<br><br><br>";*/
                     //print_r($data);
                     // VALIDATION
+                    if($answer == null || trim($answer)=="") continue;
                     if (!in_array($answer, ['A','B','C','D'])) {
                         echo "sdfl;mds;f sd;f dl;fklfsdf;mf;dsfsdf ";
                         continue;
@@ -69,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     $db->insert("data_mcq", [
                         "title" => trim($title),
-                        "question" => trim($question),
+                        "question" => trim($question) . " ($bibleBooks)",
                         "choiceA" => trim($A),
                         "choiceB" => trim($B),
                         "choiceC" => trim($C),

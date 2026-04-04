@@ -11,13 +11,24 @@ class DBCore
     private $pass = "";
     private $charset = "utf8mb4";
 
+    private $hostOnline = "db5020009634.hosting-data.io";
+    private $dbOnline   = "dbs15434173";
+    private $userOnline = "dbu4573278";
+    private $passOnline = "BymQu!z2016";
+    private $charsetOnline = "utf8mb4";
+
     // Private constructor (Singleton)
     private function __construct()
     {
-        $dsn = "mysql:host={$this->host};dbname={$this->db};charset={$this->charset}";
+        $dsn = ($_SERVER['HTTP_HOST']=="api.institutblaina.cm") ? "mysql:host={$this->host};dbname={$this->db};charset={$this->charset}" : "mysql:host={$this->hostOnline};dbname={$this->dbOnline};charset={$this->charsetOnline}";
 
         try {
-            $this->pdo = new PDO($dsn, $this->user, $this->pass, [
+            $this->pdo = ($_SERVER['HTTP_HOST']=="api.institutblaina.cm") ? new PDO($dsn, $this->user, $this->pass, [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_PERSISTENT => false
+            ]) : 
+            new PDO($dsn, $this->userOnline, $this->passOnline, [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_PERSISTENT => false

@@ -2,8 +2,9 @@
     require_once "core/connexion.php";
     require_once "core/searchoption.php";
     require_once "core/dbcustomfields.php";
+    ini_set('default_charset', 'UTF-8');
     
-    $GLOBALS['ApiUrl'] = "https://yehoshoualevivant.com/bymquiz";//"http://api.institutblaina.cm/bymquiz";
+    $GLOBALS['ApiUrl'] = ($_SERVER['HTTP_HOST']=="api.institutblaina.cm") ? "http://api.institutblaina.cm/bymquiz" : "https://yehoshoualevivant.com/bymquiz";//"http://api.institutblaina.cm/bymquiz";
     $GLOBALS['MaxPage'] = 10;
     $GLOBALS['msg'] = '';
     $_GET['mnu'] = isset($_GET['mnu']) ? $_GET['mnu'] : 'home';
