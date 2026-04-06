@@ -530,6 +530,17 @@ $current = getRandomPendingMcq($pdo);
             </div>
         </div>
 
+		<div class="card">
+			<?php if ($message !== ''): ?>
+				<div class="alert <?php echo htmlspecialchars($messageType); ?>">
+					<?php echo htmlspecialchars($message); ?>
+				</div>
+				<br/>
+			<?php endif; ?>
+			
+		</div>
+		<br/>
+
         <div class="card">
             <div class="card-top">
                 <h2 style="margin:0; font-size:22px;">Validation / Mise à jour</h2>
@@ -549,11 +560,7 @@ $current = getRandomPendingMcq($pdo);
                 </div>
             </div>
 
-            <?php if ($message !== ''): ?>
-                <div class="alert <?php echo htmlspecialchars($messageType); ?>">
-                    <?php echo htmlspecialchars($message); ?>
-                </div>
-            <?php endif; ?>
+            
 
             <?php if (!$current): ?>
                 <div class="empty-state">
