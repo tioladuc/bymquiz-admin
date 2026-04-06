@@ -450,6 +450,12 @@ $current = getRandomPendingMcq($pdo);
             color:#fff;
             box-shadow:0 10px 24px rgba(37,99,235,.26);
         }
+		
+		.btn-primarysecond{
+            background:linear-gradient(135deg, red, orange);
+            color:#fff;
+            box-shadow:0 10px 24px rgba(37,99,235,.26);
+        }
 
         .btn-success{
             background:linear-gradient(135deg, #16a34a, #15803d);
@@ -657,6 +663,7 @@ $current = getRandomPendingMcq($pdo);
                         <button type="submit" name="action" value="mettre_a_jour" class="btn btn-primary">
                             METTRE A JOUR
                         </button>
+						<a href="validation.php" class="btn btn-primarysecond">PASSER QUESTION SUIVANTE</a>
                     </div>
                 </form>
             <?php endif; ?>
