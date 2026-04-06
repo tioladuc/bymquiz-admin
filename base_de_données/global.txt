@@ -1,5 +1,82 @@
+INSERT INTO data_mcq_tmp
+(
+    title,
+    question,
+    choiceA,
+    choiceB,
+    choiceC,
+    choiceD,
+    reponseChoice,
+    explication,
+    bible_references,
+    description,
+    language,
+    created_on,
+    active,
+    achived,
+    searchoptions,
+    keywords,
+    users_publisher_id
+)
 SELECT 
-GROUP_CONCAT(DISTINCT id ORDER BY id ASC SEPARATOR '; ') AS ids,
+    title,
+    question,
+
+    (CASE WHEN (id % 4) = 0 THEN choiceA
+        WHEN (id % 4) = 1 THEN choiceB
+        WHEN (id % 4) = 2 THEN choiceC
+        ELSE choiceD END) as choiceA,
+
+    (CASE WHEN (id % 4) = 1 THEN choiceA ELSE choiceB END) as choiceB,
+    (CASE WHEN (id % 4) = 2 THEN choiceA ELSE choiceC END) as choiceC,
+    (CASE WHEN (id % 4) = 3 THEN choiceA ELSE choiceD END) as choiceD,
+
+    (CASE WHEN (id % 4) = 0 THEN 'A'
+        WHEN (id % 4) = 1 THEN 'B'
+        WHEN (id % 4) = 2 THEN 'C'
+        ELSE 'D' END) as reponseChoice,
+    
+    explication,
+    bible_references,
+    description,
+    language,
+    created_on,
+    active,
+    achived,
+    searchoptions,
+    keywords,
+    users_publisher_id
+FROM data_mcq_bk
+******************************************
+Nous voulons produce le script sql pour inserer les données dans 
+INSERT INTO data_mcq(title, question,choiceA,choiceB,choiceC,choiceD,reponseChoice,explication,bible_references,description,language,created_on,active,achived,**searchoptions,keywords,users_publisher_id)
+
+language=FR,created_on=2026-04-04 06:00:00,active=1,achived='',
+users_publisher_id = 4
+keywords = liste des mots separés par la virgule,
+
+title = titre de la question,
+question = c'est la question pour lequel on aura plusieurs choix multiple,
+choiceA = C,est le premier choix,
+choiceB = Deuxieme choix,
+choiceC = Troisieme choix,
+choiceD = Quatrieme choix,
+reponseChoice = A / B / C / D,
+explication = C'est l'explication pour la bonne réponse,
+bible_references = passage bible où la réponse est tirée,
+description = description globale de la question,
+
+suivant la difficulté du QCM, searchoptions peut avoir les valeurs
+
+<bibleSection>Torah</bibleSection><difficulty>EASY</difficulty><bibleBooks>DT</bibleBooks><typeOfKnowledge>PEB</typeOfKnowledge>,
+<bibleSection>Torah</bibleSection><difficulty>MEDIUM</difficulty><bibleBooks>DT</bibleBooks><typeOfKnowledge>PEB</typeOfKnowledge>,
+<bibleSection>Torah</bibleSection><difficulty>HARD</difficulty><bibleBooks>DT</bibleBooks><typeOfKnowledge>PEB</typeOfKnowledge>
+
+
+Utiliser ce livre pour produire un QCM sur les personnages de la bible, utiliser les noms originaux dans le livre. Produire plusieurs données. Utiliser le livre de Yéhoshoua(DT
+
+*******************************************
+SELECT GROUP_CONCAT(DISTINCT id ORDER BY id ASC SEPARATOR '; ') AS ids,
 title, question, explication, description, bible_references, count(*) as total
 FROM `data_mcq_tmp` 
 Group by title, question, explication, description, bible_references 
