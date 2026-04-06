@@ -1,0 +1,79 @@
+SELECT 
+GROUP_CONCAT(DISTINCT id ORDER BY id ASC SEPARATOR '; ') AS ids,
+title, question, explication, description, bible_references, count(*) as total
+FROM `data_mcq_tmp` 
+Group by title, question, explication, description, bible_references 
+having count(*)>1
+*************************SUPPRESSION DOUBLONS******************
+DELETE t1 FROM data_mcq_tmp t1 JOIN data_mcq_tmp t2 ON t1.title = t2.title AND t1.question = t2.question AND t1.explication = t2.explication AND t1.description = t2.description AND t1.bible_references = t2.bible_references AND t1.id > t2.id
+*******************************************
+drop table data_mcq_validate;
+drop table data_mcq_tmp;
+drop table data_mcq;
+*******************************************
+CREATE TABLE `data_mcq` (
+  `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `question` text DEFAULT NULL,
+  `choiceA` text DEFAULT NULL,
+  `choiceB` text DEFAULT NULL,
+  `choiceC` text DEFAULT NULL,
+  `choiceD` text DEFAULT NULL,
+  `reponseChoice` char(1) DEFAULT NULL,
+  `explication` text DEFAULT NULL,
+  `bible_references` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `language` varchar(5) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `active` tinyint(4) NOT NULL,
+  `achived` varchar(10) NOT NULL,
+  `searchoptions` text NOT NULL,
+  `keywords` text NOT NULL,
+  `users_publisher_id` int(11) DEFAULT NULL,
+  `metadata` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `data_mcq_tmp` (
+  `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `question` text DEFAULT NULL,
+  `choiceA` text DEFAULT NULL,
+  `choiceB` text DEFAULT NULL,
+  `choiceC` text DEFAULT NULL,
+  `choiceD` text DEFAULT NULL,
+  `reponseChoice` char(1) DEFAULT NULL,
+  `explication` text DEFAULT NULL,
+  `bible_references` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `language` varchar(5) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `active` tinyint(4) NOT NULL,
+  `achived` varchar(10) NOT NULL,
+  `searchoptions` text NOT NULL,
+  `keywords` text NOT NULL,
+  `users_publisher_id` int(11) DEFAULT NULL,
+  `metadata` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `data_mcq_validate` (
+  `id` int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `question` text DEFAULT NULL,
+  `choiceA` text DEFAULT NULL,
+  `choiceB` text DEFAULT NULL,
+  `choiceC` text DEFAULT NULL,
+  `choiceD` text DEFAULT NULL,
+  `reponseChoice` char(1) DEFAULT NULL,
+  `explication` text DEFAULT NULL,
+  `bible_references` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `language` varchar(5) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `active` tinyint(4) NOT NULL,
+  `achived` varchar(10) NOT NULL,
+  `searchoptions` text NOT NULL,
+  `keywords` text NOT NULL,
+  `users_publisher_id` int(11) DEFAULT NULL,
+   data_mcq_id int(11),
+  `metadata` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
